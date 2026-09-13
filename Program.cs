@@ -46,6 +46,7 @@ builder.Services.AddSingleton<DbConnectionFactory>();
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddScoped<ConfiguracionService>();
 builder.Services.AddScoped<DispositivoService>();
+builder.Services.AddScoped<UsuarioService>();
 builder.Services.AddScoped<CatalogoService>();
 builder.Services.AddScoped<VentaService>();
 
@@ -72,3 +73,4 @@ app.UseAuthorization();
 app.MapControllers();
 app.Run();
 
+// touch

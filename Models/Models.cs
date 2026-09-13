@@ -88,3 +88,55 @@ public class DispositivoDto
 }
 
 public class CrearDispositivoRequest { public string Nombre { get; set; } = ""; public string PrefixFolio { get; set; } = "MOV"; }
+
+public record LoginUsuarioRequest(string UsuarioLogin, string Password, string DeviceId, string DeviceName);
+public record LoginUsuarioResponse(string Jwt, string UsuarioNombre, int UsuarioId, string DispositivoNombre, int DispositivoId);
+
+public class UsuarioDto
+{
+    public int Id { get; set; }
+    public string Nombre { get; set; } = "";
+    public string UsuarioLogin { get; set; } = "";
+    public bool EsAdmin { get; set; }
+    public string Estado { get; set; } = "";
+}
+
+
+public class DashboardMetrics
+{
+    public decimal VentasHoy { get; set; }
+    public int TicketsHoy { get; set; }
+    public decimal CuentasPorCobrar { get; set; }
+    public int ProductosCriticos { get; set; }
+    public decimal RetirosHoy { get; set; }
+    public List<ArticuloVendidoDTO> ProductosMasVendidos { get; set; } = new();
+    public List<ArticuloVendidoDTO> ProductosMenosVendidos { get; set; } = new();
+    public List<ReporteExistenciasDTO> ProductosStockBajo { get; set; } = new();
+    public List<LoteCaducidadDTO> LotesProximosCaducar { get; set; } = new();
+}
+
+public class ArticuloVendidoDTO
+{
+    public string CodigoBarras { get; set; } = string.Empty;
+    public string Nombre { get; set; } = string.Empty;
+    public decimal CantidadTotal { get; set; }
+    public decimal TotalGenerado { get; set; }
+}
+
+public class ReporteExistenciasDTO
+{
+    public string CodigoBarras { get; set; } = string.Empty;
+    public string Nombre { get; set; } = string.Empty;
+    public decimal StockActual { get; set; }
+    public decimal StockMinimo { get; set; }
+}
+
+public class LoteCaducidadDTO
+{
+    public string CodigoBarras { get; set; } = string.Empty;
+    public string ProductoNombre { get; set; } = string.Empty;
+    public string NumeroLote { get; set; } = string.Empty;
+    public decimal StockLote { get; set; }
+    public DateTime FechaCaducidad { get; set; }
+    public int DiasRestantes { get; set; }
+}
